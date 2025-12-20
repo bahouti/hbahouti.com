@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hicham Bahouti</title>
+  <meta name="description" content="Hicham Bahouti — Cybersecurity / Systems" />
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="bg"></div>
+
+  <header class="nav">
+    <a class="brand" href="#">HB</a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact" class="pill">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="avatar"></div>
+      <h1>Hicham Bahouti</h1>
+      <p class="subtitle">Cybersecurity • Systems • PKI / AD Labs</p>
+
+      <div class="cta">
+        <a class="btn" href="#work">Selected Work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>
+        I build secure infrastructure and labs (AD, DNS/DHCP, PKI templates, Exchange, monitoring),
+        with a focus on reliability, automation, and clean documentation.
+      </p>
+    </section>
+
+    <section id="work" class="section">
+      <h2>Work</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="k">Lab</div>
+          <h3>Proxmox enterprise lab</h3>
+          <p>Multi-VM Windows Server + clients, AD DS, DNS/DHCP, PKI, Exchange, monitoring.</p>
+        </article>
+        <article class="card">
+          <div class="k">Security</div>
+          <h3>PKI templates</h3>
+          <p>Custom templates for signature/encryption scenarios with controlled issuance.</p>
+        </article>
+        <article class="card">
+          <div class="k">Ops</div>
+          <h3>Observability</h3>
+          <p>Zabbix checks, network troubleshooting, practical runbooks and tickets.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p class="mono">
+        Email: <a href="mailto:contact@hbahouti.com">contact@hbahouti.com</a>
+        <span class="dot">•</span>
+        GitHub: <a href="https://github.com/bahouti" target="_blank" rel="noreferrer">bahouti</a>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span class="mono">© <span id="y"></span> Hicham Bahouti</span>
+    </footer>
+  </main>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
