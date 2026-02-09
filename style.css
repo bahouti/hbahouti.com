@@ -74,16 +74,30 @@ html, body{
   padding-top: 2rem;
 }
 
-/* Background animation (hero only) */
-#bg{
+/* Voile de lisibilité au-dessus de l’animation */
+.hero::after{
+  content: "";
   position: absolute;
   inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0.95)
+  );
   z-index: 0;
   pointer-events: none;
 }
 
-/* Hero content above background */
-.hero > *:not(#bg){
+/* Background animation (hero only) */
+#bg{
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hero content above everything */
+.hero > *{
   position: relative;
   z-index: 1;
 }
