@@ -2,64 +2,102 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Maintenance — hbahouti.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maintenance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     html,body{
       height:100%;
       margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:#fff;
-      color:#111;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(1200px 600px at 50% 20%, #1a0f2e, #070812);
+      color:#f5f6fa;
     }
+
     body{
-      display:grid;
-      place-items:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
-    .card{
+
+    .container{
       width:min(520px,92vw);
-      padding:32px;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:14px;
+      padding:36px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(14px);
       text-align:center;
     }
+
     h1{
-      margin:0 0 10px;
-      font-size:20px;
+      margin:0 0 12px;
+      font-size:26px;
       font-weight:600;
+      letter-spacing:-0.02em;
     }
+
     p{
-      margin:0 0 24px;
+      margin:0 0 28px;
       font-size:14px;
-      opacity:.7;
+      opacity:.75;
+      line-height:1.6;
     }
-    .bar{
+
+    .progress{
       height:10px;
       border-radius:999px;
-      background:rgba(0,0,0,.1);
+      background:rgba(255,255,255,.12);
       overflow:hidden;
     }
-    .fill{
+
+    .progress span{
+      display:block;
       height:100%;
-      width:75%;
-      background:#111;
+      width:0%;
+      background:linear-gradient(90deg,#ff3c8e,#a855f7);
+      transition:width .4s ease;
     }
-    .pct{
-      margin-top:10px;
+
+    .percent{
+      margin-top:12px;
       font-size:13px;
-      opacity:.6;
+      opacity:.65;
+      font-variant-numeric:tabular-nums;
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="container">
     <h1>Maintenance en cours</h1>
     <p>Le site est actuellement en cours de mise à jour.<br>Merci pour votre patience.</p>
 
-    <div class="bar">
-      <div class="fill"></div>
+    <div class="progress">
+      <span id="bar"></span>
     </div>
-    <div class="pct">75 %</div>
+    <div class="percent"><span id="pct">0</span> %</div>
   </div>
+
+  <script>
+    const bar = document.getElementById("bar");
+    const pct = document.getElementById("pct");
+
+    let value = 0;
+    const target = 75;
+
+    const timer = setInterval(() => {
+      if (value < target) {
+        value++;
+        bar.style.width = value + "%";
+        pct.textContent = value;
+      } else {
+        clearInterval(timer);
+      }
+    }, 40);
+  </script>
 </body>
 </html>
