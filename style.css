@@ -11,12 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header class="nav">
     <a class="brand" href="#">HB</a>
     <nav class="links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#parcours">Parcours</a>
       <a href="#contact" class="pill">Contact</a>
     </nav>
   </header>
@@ -39,4 +41,3 @@
       <h2>About</h2>
       <p>
         I build secure infrastructure and labs (AD, DNS/DHCP, PKI templates, Exchange, monitoring),
-        wit
