@@ -1,3 +1,4 @@
+/* style.css */
 :root{
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
           "Liberation Mono","Courier New", monospace;
@@ -23,6 +24,7 @@ body{
 a{ color: var(--link); text-decoration: none; }
 a:hover{ text-decoration: underline; text-underline-offset: 3px; }
 
+/* Particles behind */
 #particle-bg{
   position: fixed;
   inset: 0;
@@ -35,11 +37,13 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   display: block;
 }
 
+/* Content above particles */
 .navigation, .main, #footer{
   position: relative;
   z-index: 1;
 }
 
+/* Top nav (msuiche-like) */
 .navigation{
   position: sticky;
   top: 0;
@@ -69,12 +73,14 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   border-color: rgba(43,121,255,.30);
 }
 
+/* Page */
 .main{
   max-width: 760px;
   margin: 0 auto;
   padding: 28px 22px 80px;
 }
 
+/* Profile header */
 .profile{
   display: flex;
   flex-direction: column;
@@ -114,6 +120,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   margin-bottom: 12px;
 }
 
+/* Titles + list */
 .title{
   font-size: 14px;
   font-weight: 600;
@@ -154,8 +161,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   max-width: 72ch;
 }
 
+/* Reveal: visible par défaut */
 .reveal{ opacity: 1; transform: none; }
 
+/* Anim seulement si JS actif */
 html.js .reveal{
   opacity: 0;
   transform: translateY(10px);
@@ -171,6 +180,7 @@ html.js .reveal.in{
   html.js .reveal{ opacity: 1; transform: none; transition: none; }
 }
 
+/* Footer */
 #footer{
   padding: 16px 0 26px;
   text-align: center;
