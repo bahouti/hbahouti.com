@@ -51,9 +51,12 @@
 
   function getAvatarCenter() {
     const el = document.querySelector(".avatar");
-    if (!el) return { x: w * 0.5, y: h * 0.22 };
+    if (!el) return { x: w * 0.5, y: h * 0.30 };
     const r = el.getBoundingClientRect();
-    return { x: (r.left + r.width / 2) * dpr, y: (r.top + r.height / 2) * dpr };
+    return {
+      x: (r.left + r.width / 2) * dpr,
+      y: (r.top + r.height / 2 + 120) * dpr
+    };
   }
 
   function seed() {
@@ -72,8 +75,8 @@
         y: c.y + Math.sin(angle) * radius + jitter,
         vx: rand(-0.20, 0.20) * dpr,
         vy: rand(-0.20, 0.20) * dpr,
-        r: rand(0.30, 0.95) * dpr,
-        a: rand(0.03, 0.10),
+        r: rand(0.22, 0.62) * dpr,
+        a: rand(0.06, 0.18),
         homeAngle: angle,
         homeRadius: radius,
         spin: rand(-0.0024, 0.0024),
@@ -87,8 +90,8 @@
         y: (0.55 + 0.45 * yBias) * h,
         vx: rand(-0.13, 0.13) * dpr,
         vy: rand(-0.06, 0.06) * dpr,
-        r: rand(0.25, 0.90) * dpr,
-        a: rand(0.02, 0.08),
+        r: rand(0.18, 0.55) * dpr,
+        a: rand(0.05, 0.20),
       });
     }
   }
@@ -118,7 +121,7 @@
 
   function step() {
     ctx.clearRect(0, 0, w, h);
-    ctx.filter = "blur(0.6px)";
+    ctx.filter = "blur(0.2px)";
 
     const c = getAvatarCenter();
 
@@ -141,7 +144,7 @@
       const dx = p.x - c.x;
       const dy = p.y - c.y;
       const dist = Math.sqrt(dx * dx + dy * dy) / (200 * dpr);
-      const a = p.a * clamp(1.20 - dist, 0.18, 1.20);
+      const a = p.a * clamp(1.20 - dist, 0.22, 1.20);
 
       drawDot(p.x, p.y, p.r, a);
     }
@@ -164,7 +167,7 @@
       if (p.y > bottomLimit) p.y = topLimit;
 
       const tY = clamp((p.y / h - 0.55) / 0.45, 0, 1);
-      const a = p.a * (0.18 + 0.92 * tY);
+      const a = p.a * (0.25 + 0.90 * tY);
 
       drawDot(p.x, p.y, p.r, a);
     }
