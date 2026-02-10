@@ -8,13 +8,8 @@
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-html{
-  color-scheme: light dark;
-}
-
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
-
 body{
   margin: 0;
   background: var(--bg);
@@ -23,17 +18,10 @@ body{
   line-height: 1.5;
 }
 
-/* Three.js canvas lives inside #bg */
 #bg{
   position: fixed;
   inset: 0;
   z-index: -1;
-  pointer-events: none;
-}
-#bg canvas{
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .nav{
@@ -265,18 +253,4 @@ body{
     grid-column: 2;
     text-align: left !important;
   }
-}
-
-/* Native dark mode (uniform, no Dark Reader artifacts) */
-@media (prefers-color-scheme: dark) {
-  :root{
-    --bg: #0e0f11;
-    --text: #e6e6e6;
-    --muted: #9aa0a6;
-    --line: rgba(255,255,255,.08);
-    --blue: #5c8dff;
-  }
-
-  body{ background: var(--bg); color: var(--text); }
-  .intro, .summary{ color: #d7d7d7; }
 }
