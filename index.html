@@ -1,65 +1,122 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hicham Bahouti</title>
-  <meta name="description" content="Hicham Bahouti — Cybersecurity / Systems" />
+  <meta name="description" content="Hicham Bahouti — Systems & Cybersecurity (AD/PKI, Windows Infrastructure)" />
   <link rel="stylesheet" href="style.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+  <div id="bg" aria-hidden="true"></div>
+
   <header class="nav">
-    <a class="brand" href="#">HB</a>
-    <nav class="links">
+    <a class="brand" href="#top" aria-label="Home">HB</a>
+    <nav class="links" aria-label="Primary">
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#work">Work</a>
-      <a href="#contact" class="pill">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div id="bg" aria-hidden="true"></div>
+  <main id="top" class="wrap">
+    <section class="intro">
+      <div class="avatar" role="img" aria-label="Portrait of Hicham Bahouti"></div>
 
-      <div class="avatar"></div>
       <h1>Hicham Bahouti</h1>
-      <p class="subtitle">CYBERSECURITY • SYSTEMS • PKI / AD LABS</p>
+      <p class="tagline">Systems & Cybersecurity Engineer · AD / PKI · Windows Infrastructure</p>
 
-      <div class="cta">
-        <a class="btn" href="#work">Selected Work</a>
-        <a class="btn ghost" href="#contact">Get in touch</a>
-      </div>
+      <p class="lede">
+        I build and operate secure infrastructure: Active Directory, DNS/DHCP, PKI templates, Exchange,
+        monitoring and clean documentation — with a pragmatic, reliability-first approach.
+      </p>
+
+      <p class="quick">
+        <a href="#experience">Experience</a>
+        <span class="dot">·</span>
+        <a href="#work">Selected work</a>
+        <span class="dot">·</span>
+        <a href="#contact">Get in touch</a>
+      </p>
     </section>
 
     <section id="about" class="section">
       <h2>About</h2>
       <p>
-        I build secure infrastructure and labs (AD, DNS/DHCP, PKI templates, Exchange, monitoring),
-        with a focus on reliability, automation, and clean documentation.
+        IT / systems engineer with a cybersecurity mindset. I enjoy building labs to understand systems deeply
+        (AD DS, PKI, GPO, monitoring), documenting procedures, and automating repetitive tasks.
       </p>
     </section>
 
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+
+      <div class="list">
+        <article class="item reveal">
+          <h3>Systems & Network Administrator — Prim’X</h3>
+          <div class="meta">Sep 2025 — Mar 2026 · Full-time</div>
+          <p>
+            Incident analysis and resolution (N2/N3) in on-prem environments.
+            Server integration and monitoring with Zabbix. Focus on infrastructure reliability and security.
+          </p>
+        </article>
+
+        <article class="item reveal">
+          <h3>Systems & Network Administrator — La Banque Postale</h3>
+          <div class="meta">Aug 2024 — Jul 2025 · Full-time</div>
+          <p>
+            N2 support and operations (MCO) on VirtuOS private cloud.
+            NTFS permissions management. Deployment of Watchdoc secure printing (server, queues, printers).
+            Participation in technical meetings. Active Directory administration (users, groups).
+          </p>
+        </article>
+
+        <article class="item reveal">
+          <h3>Systems & Network Administrator — Hopla.cloud</h3>
+          <div class="meta">Sep 2022 — Jul 2024 · Apprenticeship</div>
+          <p>
+            Contributed to a RHOSP 16 (OpenShift) public cloud platform.
+            Centralized logging deployment (ELK). Backup/replication with Veeam for inter-site resilience.
+          </p>
+        </article>
+
+        <article class="item reveal">
+          <h3>Field IT Technician — Pharmagest</h3>
+          <div class="meta">Jul 2022 — Aug 2022 · Contract</div>
+          <p>
+            Troubleshooting and IT support. Integration of hardware and business IT solutions (SMB, NAS, routers, peripherals).
+            Deployment of Linux servers and Windows clients.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <section id="work" class="section">
-      <h2>Work</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="k">Lab</div>
+      <h2>Selected Work</h2>
+
+      <div class="list">
+        <article class="item reveal">
           <h3>Proxmox enterprise lab</h3>
+          <div class="meta">Home Lab</div>
           <p>Multi-VM Windows Server + clients, AD DS, DNS/DHCP, PKI, Exchange, monitoring.</p>
         </article>
-        <article class="card">
-          <div class="k">Security</div>
+
+        <article class="item reveal">
           <h3>PKI templates</h3>
-          <p>Custom templates for signature/encryption scenarios with controlled issuance.</p>
+          <div class="meta">Security</div>
+          <p>Custom templates for signature/encryption scenarios with controlled issuance and lifecycle hygiene.</p>
         </article>
-        <article class="card">
-          <div class="k">Ops</div>
-          <h3>Observability</h3>
-          <p>Zabbix checks, network troubleshooting, practical runbooks and tickets.</p>
+
+        <article class="item reveal">
+          <h3>Observability & runbooks</h3>
+          <div class="meta">Ops</div>
+          <p>Zabbix checks, troubleshooting, and operational documentation built from real incidents & tickets.</p>
         </article>
       </div>
     </section>
@@ -67,9 +124,11 @@
     <section id="contact" class="section">
       <h2>Contact</h2>
       <p class="mono">
-        Email: <a href="mailto:contact@hbahouti.com">contact@hbahouti.com</a>
-        <span class="dot">•</span>
+        Email: <a href="mailto:hichambahouti.pro@gmail.com">hichambahouti.pro@gmail.com</a>
+        <span class="dot">·</span>
         GitHub: <a href="https://github.com/bahouti" target="_blank" rel="noreferrer">bahouti</a>
+        <span class="dot">·</span>
+        LinkedIn: <a href="https://www.linkedin.com/in/hicham-bahouti/" target="_blank" rel="noreferrer">hicham-bahouti</a>
       </p>
     </section>
 
