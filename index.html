@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1" />
   <meta name="description" content="Hicham Bahouti — Systems & Cybersecurity" />
 
+  <!-- Important: marks that JS is enabled (used by CSS so content isn't hidden if JS fails) -->
+  <script>document.documentElement.classList.add('js');</script>
+
   <link rel="stylesheet" href="./style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +48,7 @@
     </section>
 
     <h1 id="experience" class="title">Experience</h1>
-    <div id="list-page">
+    <div class="list-page">
       <section class="item reveal">
         <div class="row">
           <h1 class="post-title">Systems & Network Administrator — Prim’X</h1>
@@ -92,7 +95,7 @@
     </div>
 
     <h1 id="work" class="title">Selected work</h1>
-    <div id="list-page">
+    <div class="list-page">
       <section class="item reveal">
         <div class="row">
           <h1 class="post-title">Proxmox enterprise lab</h1>
@@ -139,6 +142,8 @@
   </footer>
 
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
-  <script src="./particle-background.js" defer></script>
+
+  <!-- Keep it at the end so DOM is ready -->
+  <script src="./particle-background.js"></script>
 </body>
 </html>
