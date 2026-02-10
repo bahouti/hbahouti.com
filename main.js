@@ -1,10 +1,6 @@
-// particle-background.js
 (() => {
-  console.log("HB particles: OK");
-
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Scroll reveal
   const revealEls = document.querySelectorAll(".reveal");
   if (reduced) {
     revealEls.forEach(el => el.classList.add("in"));
@@ -23,9 +19,10 @@
     revealEls.forEach((el) => io.observe(el));
   }
 
-  // Particles
   const host = document.getElementById("particle-bg");
   if (!host || reduced) return;
+
+  host.innerHTML = "";
 
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d", { alpha: true });
@@ -35,7 +32,6 @@
   const rand = (a, b) => a + Math.random() * (b - a);
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-  // Slightly more visible blue
   const DOT = { r: 75, g: 160, b: 255 };
 
   const around = [];
@@ -76,8 +72,8 @@
         y: c.y + Math.sin(angle) * radius + jitter,
         vx: rand(-0.20, 0.20) * dpr,
         vy: rand(-0.20, 0.20) * dpr,
-        r: rand(0.7, 1.6) * dpr,
-        a: rand(0.08, 0.26),
+        r: rand(0.30, 0.95) * dpr,
+        a: rand(0.03, 0.10),
         homeAngle: angle,
         homeRadius: radius,
         spin: rand(-0.0024, 0.0024),
@@ -91,8 +87,8 @@
         y: (0.55 + 0.45 * yBias) * h,
         vx: rand(-0.13, 0.13) * dpr,
         vy: rand(-0.06, 0.06) * dpr,
-        r: rand(0.7, 1.9) * dpr,
-        a: rand(0.06, 0.22),
+        r: rand(0.25, 0.90) * dpr,
+        a: rand(0.02, 0.08),
       });
     }
   }
@@ -122,10 +118,10 @@
 
   function step() {
     ctx.clearRect(0, 0, w, h);
+    ctx.filter = "blur(0.6px)";
 
     const c = getAvatarCenter();
 
-    // Around avatar
     for (const p of around) {
       p.homeAngle += p.spin;
       const hx = c.x + Math.cos(p.homeAngle) * p.homeRadius;
@@ -150,7 +146,6 @@
       drawDot(p.x, p.y, p.r, a);
     }
 
-    // Bottom field
     for (const p of field) {
       repel(p);
 
@@ -174,6 +169,7 @@
       drawDot(p.x, p.y, p.r, a);
     }
 
+    ctx.filter = "none";
     requestAnimationFrame(step);
   }
 
