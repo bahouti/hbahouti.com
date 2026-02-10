@@ -1,95 +1,83 @@
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
-
-/* ========= Scroll reveal (Experience / Work items) ========= */
+// Scroll reveal
 const revealEls = document.querySelectorAll(".reveal");
-const revealIO = new IntersectionObserver(
+const io = new IntersectionObserver(
   (entries) => {
     for (const e of entries) {
       if (e.isIntersecting) {
         e.target.classList.add("in");
-        revealIO.unobserve(e.target);
+        io.unobserve(e.target);
       }
     }
   },
-  { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+  { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
 );
-revealEls.forEach((el) => revealIO.observe(el));
+revealEls.forEach((el) => io.observe(el));
 
-/* ========= Background particles (Three.js) ========= */
+// Background particles (canvas 2D, simple + light, no libs)
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const container = document.getElementById("bg");
-
-if (!container || reduced) {
-  if (container) container.style.display = "none";
+const canvas = document.getElementById("bg");
+if (!canvas || reduced) {
+  if (canvas) canvas.style.display = "none";
 } else {
-  const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true,
-    powerPreference: "high-performance",
-  });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  container.appendChild(renderer.domElement);
+  const ctx = canvas.getContext("2d");
+  let w = 0, h = 0, dpr = 1;
+  const particles = [];
+  const COUNT = 900;
 
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0b0d0f, 0.10);
-
-  const camera = new THREE.PerspectiveCamera(65, 1, 0.1, 200);
-  camera.position.set(0, 0, 18);
-
-  const geometry = new THREE.BufferGeometry();
-  const count = 1200;
-
-  const positions = new Float32Array(count * 3);
-  const sizes = new Float32Array(count);
-
-  for (let i = 0; i < count; i++) {
-    const i3 = i * 3;
-    positions[i3 + 0] = (Math.random() - 0.5) * 40;
-    positions[i3 + 1] = (Math.random() - 0.5) * 22;
-    positions[i3 + 2] = (Math.random() - 0.5) * 40;
-    sizes[i] = Math.random() * 1.3 + 0.4;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = Math.floor(window.innerWidth * dpr);
+    h = Math.floor(window.innerHeight * dpr);
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
   }
 
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+  function rnd(min, max){ return Math.random() * (max - min) + min; }
 
-  const material = new THREE.PointsMaterial({
-    color: 0x5aa2ff,
-    size: 0.06,
-    transparent: true,
-    opacity: 0.65,
-    depthWrite: false,
-  });
-
-  const points = new THREE.Points(geometry, material);
-  scene.add(points);
-
-  const onResize = () => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  };
-  window.addEventListener("resize", onResize, { passive: true });
-  onResize();
-
-  let t = 0;
-  const animate = () => {
-    t += 0.0025;
-    points.rotation.y = t * 0.25;
-    points.rotation.x = t * 0.08;
-
-    // subtle drift
-    const pos = geometry.attributes.position.array;
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
-      pos[i3 + 1] += Math.sin(t + i) * 0.0008;
+  function init() {
+    particles.length = 0;
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: rnd(0, w),
+        y: rnd(0, h),
+        r: rnd(0.6, 1.6) * dpr,
+        vx: rnd(-0.15, 0.15) * dpr,
+        vy: rnd(-0.10, 0.10) * dpr,
+        a: rnd(0.08, 0.22) // alpha
+      });
     }
-    geometry.attributes.position.needsUpdate = true;
+  }
 
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  };
-  animate();
+  function step() {
+    ctx.clearRect(0, 0, w, h);
+
+    // More visible at bottom (like msuiche)
+    // We'll draw everything but alpha boosted by vertical position.
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+
+      const t = Math.max(0, (p.y / h) - 0.55) / 0.45; // 0..1 mainly bottom
+      const alpha = p.a * (0.25 + 0.75 * t);
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 120, 40, ${alpha})`; // warm dots like msuiche
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener("resize", () => { resize(); init(); }, { passive: true });
+  resize();
+  init();
+  step();
 }
