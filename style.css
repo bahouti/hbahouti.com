@@ -127,7 +127,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   margin: 26px 0 10px;
 }
 
-#list-page{ border-top: 1px solid var(--line); }
+.list-page{ border-top: 1px solid var(--line); }
 
 .item{
   padding: 14px 0;
@@ -161,16 +161,22 @@ a:hover{ text-decoration: underline; text-underline-offset: 3px; }
   max-width: 72ch;
 }
 
-/* Reveal on scroll (optional, msuiche-ish subtle) */
-.reveal{
+/* Reveal: IMPORTANT — only hide when JS is actually enabled */
+.reveal{ opacity: 1; transform: none; }
+
+html.js .reveal{
   opacity: 0;
   transform: translateY(10px);
   transition: opacity .55s ease, transform .55s ease;
   will-change: opacity, transform;
 }
-.reveal.in{ opacity: 1; transform: translateY(0); }
+html.js .reveal.in{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce){
-  .reveal{ opacity: 1; transform: none; transition: none; }
+  html.js .reveal{ opacity: 1; transform: none; transition: none; }
 }
 
 /* Footer */
