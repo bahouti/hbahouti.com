@@ -1,31 +1,31 @@
 // particle-background.js
 (() => {
+  console.log("HB particles: OK");
+
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) {
-    // Still show content, no animation
-    const els = document.querySelectorAll(".reveal");
-    els.forEach(el => el.classList.add("in"));
-    return;
-  }
 
   // Scroll reveal
   const revealEls = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
+  if (reduced) {
+    revealEls.forEach(el => el.classList.add("in"));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
         }
-      }
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
-  );
-  revealEls.forEach((el) => io.observe(el));
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+    revealEls.forEach((el) => io.observe(el));
+  }
 
   // Particles
   const host = document.getElementById("particle-bg");
-  if (!host) return;
+  if (!host || reduced) return;
 
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d", { alpha: true });
@@ -35,13 +35,13 @@
   const rand = (a, b) => a + Math.random() * (b - a);
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-  // Blue dots like msuiche
-  const DOT = { r: 70, g: 150, b: 255 };
+  // Slightly more visible blue
+  const DOT = { r: 75, g: 160, b: 255 };
 
   const around = [];
   const field = [];
   const AROUND_N = 520;
-  const FIELD_N = 900;
+  const FIELD_N = 950;
 
   let mouseX = null, mouseY = null;
 
@@ -66,35 +66,33 @@
 
     const c = getAvatarCenter();
 
-    // Cloud around avatar
     for (let i = 0; i < AROUND_N; i++) {
       const angle = rand(0, Math.PI * 2);
-      const radius = rand(10, 170) * dpr;
+      const radius = rand(12, 170) * dpr;
       const jitter = rand(-10, 10) * dpr;
 
       around.push({
         x: c.x + Math.cos(angle) * radius + jitter,
         y: c.y + Math.sin(angle) * radius + jitter,
-        vx: rand(-0.18, 0.18) * dpr,
-        vy: rand(-0.18, 0.18) * dpr,
-        r: rand(0.6, 1.4) * dpr,
-        a: rand(0.06, 0.22),
+        vx: rand(-0.20, 0.20) * dpr,
+        vy: rand(-0.20, 0.20) * dpr,
+        r: rand(0.7, 1.6) * dpr,
+        a: rand(0.08, 0.26),
         homeAngle: angle,
         homeRadius: radius,
-        spin: rand(-0.0022, 0.0022),
+        spin: rand(-0.0024, 0.0024),
       });
     }
 
-    // Dense field at bottom
     for (let i = 0; i < FIELD_N; i++) {
-      const yBias = Math.pow(Math.random(), 0.35);
+      const yBias = Math.pow(Math.random(), 0.32);
       field.push({
         x: rand(0, w),
         y: (0.55 + 0.45 * yBias) * h,
-        vx: rand(-0.12, 0.12) * dpr,
+        vx: rand(-0.13, 0.13) * dpr,
         vy: rand(-0.06, 0.06) * dpr,
-        r: rand(0.6, 1.6) * dpr,
-        a: rand(0.04, 0.18),
+        r: rand(0.7, 1.9) * dpr,
+        a: rand(0.06, 0.22),
       });
     }
   }
@@ -113,11 +111,11 @@
     const dy = p.y - mouseY;
     const dist2 = dx * dx + dy * dy;
 
-    const R = 110 * dpr;
+    const R = 120 * dpr;
     if (dist2 > R * R) return;
 
     const dist = Math.sqrt(dist2) || 1;
-    const force = (1 - dist / R) * 0.55;
+    const force = (1 - dist / R) * 0.60;
     p.vx += (dx / dist) * force * dpr;
     p.vy += (dy / dist) * force * dpr;
   }
@@ -133,8 +131,8 @@
       const hx = c.x + Math.cos(p.homeAngle) * p.homeRadius;
       const hy = c.y + Math.sin(p.homeAngle) * p.homeRadius;
 
-      p.vx += (hx - p.x) * 0.0006;
-      p.vy += (hy - p.y) * 0.0006;
+      p.vx += (hx - p.x) * 0.0007;
+      p.vy += (hy - p.y) * 0.0007;
 
       repel(p);
 
@@ -147,7 +145,7 @@
       const dx = p.x - c.x;
       const dy = p.y - c.y;
       const dist = Math.sqrt(dx * dx + dy * dy) / (200 * dpr);
-      const a = p.a * clamp(1.15 - dist, 0.15, 1.15);
+      const a = p.a * clamp(1.20 - dist, 0.18, 1.20);
 
       drawDot(p.x, p.y, p.r, a);
     }
@@ -171,7 +169,7 @@
       if (p.y > bottomLimit) p.y = topLimit;
 
       const tY = clamp((p.y / h - 0.55) / 0.45, 0, 1);
-      const a = p.a * (0.18 + 0.82 * tY);
+      const a = p.a * (0.18 + 0.92 * tY);
 
       drawDot(p.x, p.y, p.r, a);
     }
