@@ -5,92 +5,94 @@
   <title>Home | Hicham Bahouti</title>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width,minimum-scale=1" />
-  <meta name="description" content="Hicham Bahouti — Systems & Cybersecurity" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hicham Bahouti — Systems & Cybersecurity Engineer" />
 
-  <!-- Important: marks that JS is enabled (used by CSS so content isn't hidden if JS fails) -->
-  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="style.css" />
 
-  <link rel="stylesheet" href="./style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- Particles layer (behind everything) -->
-  <div id="particle-bg" aria-hidden="true"></div>
+  <div id="bg"></div>
 
-  <nav class="navigation">
-    <a href="#about">ABOUT</a>
-    <a href="#experience">EXPERIENCE</a>
-    <a href="#work">WORK</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
+  <header class="nav">
+    <a class="brand" href="#">HB</a>
+    <nav class="navigation">
+      <a href="#about">ABOUT</a>
+      <a href="#experience">EXPERIENCE</a>
+      <a href="#work">WORK</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
 
   <main class="main">
     <header class="profile">
       <img class="avatar" alt="avatar" src="./assets/avatar.jpg" />
-      <h1>Hicham Bahouti</h1>
-      <h2>Systems & Cybersecurity Engineer</h2>
+      <h1 class="name">Hicham Bahouti</h1>
+      <p class="role">Systems & Cybersecurity Engineer</p>
     </header>
 
-    <section id="about" class="section">
-      <p>
-        Hello. I work on Windows infrastructure and security: Active Directory, DNS/DHCP, PKI templates, Exchange,
-        monitoring, and clean documentation — with a pragmatic, reliability-first approach.
-      </p>
-      <p>
-        I build labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and convert incidents into runbooks
-        and small automation wins.
-      </p>
+    <section id="about">
+      <div class="intro reveal">
+        <p>
+          Hello. I work on Windows infrastructure and security: Active Directory, DNS/DHCP, PKI templates, Exchange,
+          monitoring, and clean documentation — with a pragmatic, reliability-first approach.
+        </p>
+        <p>
+          I build labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and convert incidents into runbooks
+          and small automation wins.
+        </p>
+      </div>
     </section>
 
     <h1 id="experience" class="title">Experience</h1>
-    <div class="list-page">
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Systems & Network Administrator — Prim’X</h1>
-          <div class="date">Sep 2025 — Mar 2026</div>
+    <div class="timeline" aria-label="Experience timeline">
+      <article class="t-item reveal">
+        <span class="t-marker" aria-hidden="true"></span>
+        <div class="t-card">
+          <div class="t-top">
+            <h1 class="post-title">Systems & Network Administrator — Prim’X</h1>
+            <div class="date">Sep 2025 — Mar 2026</div>
+          </div>
+          <div class="summary">Incident analysis and resolution (N2/N3) in on-prem environments. Server integration and monitoring with Zabbix. Focus on infrastructure reliability and security.</div>
         </div>
-        <div class="summary">
-          Incident analysis and resolution (N2/N3) in on-prem environments. Server integration and monitoring with Zabbix.
-          Focus on infrastructure reliability and security.
-        </div>
-      </section>
+      </article>
 
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Systems & Network Administrator — La Banque Postale</h1>
-          <div class="date">Aug 2024 — Jul 2025</div>
+      <article class="t-item reveal">
+        <span class="t-marker" aria-hidden="true"></span>
+        <div class="t-card">
+          <div class="t-top">
+            <h1 class="post-title">Systems & Network Administrator — La Banque Postale</h1>
+            <div class="date">Aug 2024 — Jul 2025</div>
+          </div>
+          <div class="summary">N2 support and operations (MCO) on VirtuOS private cloud. NTFS permissions management. Watchdoc secure printing (server, queues, printers). Technical meetings. Active Directory administration (users, groups).</div>
         </div>
-        <div class="summary">
-          N2 support and operations (MCO) on VirtuOS private cloud. NTFS permissions management. Watchdoc secure printing
-          (server, queues, printers). Technical meetings. Active Directory administration (users, groups).
-        </div>
-      </section>
+      </article>
 
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Systems & Network Administrator — Hopla.cloud (Apprenticeship)</h1>
-          <div class="date">Sep 2022 — Jul 2024</div>
+      <article class="t-item reveal">
+        <span class="t-marker" aria-hidden="true"></span>
+        <div class="t-card">
+          <div class="t-top">
+            <h1 class="post-title">Systems & Network Administrator — Hopla.cloud (Apprenticeship)</h1>
+            <div class="date">Sep 2022 — Jul 2024</div>
+          </div>
+          <div class="summary">Contributed to a RHOSP 16 (OpenShift) public cloud platform. Centralized logging deployment (ELK). Backup/replication with Veeam for inter-site resilience.</div>
         </div>
-        <div class="summary">
-          Contributed to a RHOSP 16 (OpenShift) public cloud platform. Centralized logging deployment (ELK).
-          Backup/replication with Veeam for inter-site resilience.
-        </div>
-      </section>
+      </article>
 
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Field IT Technician — Pharmagest</h1>
-          <div class="date">Jul 2022 — Aug 2022</div>
+      <article class="t-item reveal">
+        <span class="t-marker" aria-hidden="true"></span>
+        <div class="t-card">
+          <div class="t-top">
+            <h1 class="post-title">Field IT Technician — Pharmagest</h1>
+            <div class="date">Jul 2022 — Aug 2022</div>
+          </div>
+          <div class="summary">Troubleshooting and IT support. Integration of SMB IT solutions (NAS, routers, peripherals). Deployment of Linux servers and Windows clients.</div>
         </div>
-        <div class="summary">
-          Troubleshooting and IT support. Integration of SMB IT solutions (NAS, routers, peripherals).
-          Deployment of Linux servers and Windows clients.
-        </div>
-      </section>
+      </article>
     </div>
 
     <h1 id="work" class="title">Selected work</h1>
@@ -127,23 +129,18 @@
     </div>
 
     <h1 id="contact" class="title">Contact</h1>
-    <section class="section">
-      <p>
-        Email: <a href="mailto:hichambahouti.pro@gmail.com">hichambahouti.pro@gmail.com</a><br/>
-        GitHub: <a href="https://github.com/bahouti" target="_blank" rel="noreferrer">github.com/bahouti</a><br/>
-        LinkedIn: <a href="https://www.linkedin.com/in/hicham-bahouti/" target="_blank" rel="noreferrer">linkedin.com/in/hicham-bahouti</a>
-      </p>
-    </section>
+    <div class="contact reveal">
+      <p>Email: <a href="mailto:hichambahouti.pro@gmail.com">hichambahouti.pro@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/bahouti" target="_blank" rel="noreferrer">github.com/bahouti</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/hicham-bahouti" target="_blank" rel="noreferrer">linkedin.com/in/hicham-bahouti</a></p>
+    </div>
   </main>
 
   <footer id="footer">
-    <div class="copyright"> © Copyright 2026 ❤️ </div>
+    <div class="copyright"> © Copyright <span id="y">2026</span> ❤️ </div>
   </footer>
 
+  <script src="main.js" defer></script>
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
-
-  <!-- Keep it at the end so DOM is ready -->
-  <script src="./main.js" defer></script>
-
 </body>
 </html>
