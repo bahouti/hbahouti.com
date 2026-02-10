@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,18 +12,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script defer src="./main.js"></script>
 </head>
 
 <body>
-  <canvas id="bg" aria-hidden="true"></canvas>
+  <!-- Particles layer (behind everything) -->
+  <div id="particle-bg" aria-hidden="true"></div>
 
   <nav class="navigation">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">ABOUT</a>
+    <a href="#experience">EXPERIENCE</a>
+    <a href="#work">WORK</a>
+    <a href="#contact">CONTACT</a>
     <a class="button" href="./assets/Hicham-CV.pdf" target="_blank" rel="noreferrer">CV</a>
   </nav>
 
@@ -35,11 +35,11 @@
 
     <section id="about" class="section">
       <p>
-        Hello. I work on Windows infrastructure and security: Active Directory, DNS/DHCP, PKI templates,
-        Exchange, monitoring, and clean documentation — with a pragmatic, reliability-first approach.
+        Hello. I work on Windows infrastructure and security: Active Directory, DNS/DHCP, PKI templates, Exchange,
+        monitoring, and clean documentation — with a pragmatic, reliability-first approach.
       </p>
       <p>
-        I use labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and turn incidents into runbooks
+        I build labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and convert incidents into runbooks
         and small automation wins.
       </p>
     </section>
@@ -63,7 +63,7 @@
           <div class="date">Aug 2024 — Jul 2025</div>
         </div>
         <div class="summary">
-          N2 support and operations (MCO) on VirtuOS private cloud. NTFS permissions management. Deployment of Watchdoc secure printing
+          N2 support and operations (MCO) on VirtuOS private cloud. NTFS permissions management. Watchdoc secure printing
           (server, queues, printers). Technical meetings. Active Directory administration (users, groups).
         </div>
       </section>
@@ -85,7 +85,7 @@
           <div class="date">Jul 2022 — Aug 2022</div>
         </div>
         <div class="summary">
-          Troubleshooting and IT support. Integration of hardware and business IT solutions (SMB, NAS, routers, peripherals).
+          Troubleshooting and IT support. Integration of SMB IT solutions (NAS, routers, peripherals).
           Deployment of Linux servers and Windows clients.
         </div>
       </section>
@@ -139,5 +139,6 @@
   </footer>
 
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script src="./particle-background.js" defer></script>
 </body>
 </html>
