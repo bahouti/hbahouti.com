@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1" />
   <meta name="description" content="Hicham Bahouti — Systems & Cybersecurity" />
 
+  <!-- Important: marks that JS is enabled (used by CSS so content isn't hidden if JS fails) -->
   <script>document.documentElement.classList.add('js');</script>
 
   <link rel="stylesheet" href="./style.css" />
@@ -16,6 +18,7 @@
 </head>
 
 <body>
+  <!-- Particles layer (behind everything) -->
   <div id="particle-bg" aria-hidden="true"></div>
 
   <nav class="navigation">
@@ -139,6 +142,9 @@
   </footer>
 
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+
+  <!-- Keep it at the end so DOM is ready -->
   <script src="./main.js" defer></script>
+
 </body>
 </html>
