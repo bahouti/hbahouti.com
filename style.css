@@ -150,12 +150,29 @@ body{
   font-size: 12px;
 }
 
+/* links (companies + contact) */
+.company-link{
+  color: var(--blue);
+  text-decoration: none;
+}
+.company-link:hover{
+  text-decoration: underline;
+}
+.company-link:focus-visible,
+.contact a:focus-visible,
+.navigation a:focus-visible{
+  outline: 2px solid rgba(43,121,255,.35);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* reveal animation */
 .reveal{
   opacity: 0;
   transform: translateY(12px);
   transition: opacity .55s ease, transform .55s ease;
 }
+.reveal.in,
 .reveal.visible{
   opacity: 1;
   transform: translateY(0);
@@ -233,6 +250,8 @@ body{
 
 /* Mobile: single column (line on the left) */
 @media (max-width: 720px){
+  .navigation{ gap: 14px; }
+
   .timeline::before{
     left: 12px;
     transform: none;
