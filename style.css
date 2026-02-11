@@ -10,8 +10,6 @@
 
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
-
-/* +++ PLUS GRAND (propre) +++ */
 html{ font-size: 18px; }
 
 body{
@@ -185,6 +183,79 @@ body{
 }
 
 /* =========================
+   Skills (Compétences)
+========================= */
+
+.skills{
+  max-width: 920px;
+  margin: 8px auto 0;
+}
+
+.skill-block{
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+  margin: 12px 0;
+}
+
+.skill-block > summary{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  background: #1f4f86;
+  color: #fff;
+  padding: 16px 18px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.skill-block > summary::-webkit-details-marker{ display: none; }
+
+.skill-block > summary::after{
+  content: "+";
+  font-weight: 800;
+  opacity: .9;
+}
+
+.skill-block[open] > summary::after{
+  content: "–";
+}
+
+.skill-block > summary:hover{
+  filter: brightness(1.05);
+}
+
+.skill-block > summary:focus-visible{
+  outline: 3px solid rgba(43,121,255,.35);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.skill-content{
+  background: #fff;
+  padding: 14px 18px 16px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.skill-content ul{
+  margin: 0;
+  padding-left: 20px;
+  color: #222;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.skill-content li{
+  margin: 6px 0;
+}
+
+/* =========================
    Timeline (Experience)
 ========================= */
 
@@ -194,7 +265,6 @@ body{
   padding: 10px 0 6px;
 }
 
-/* vertical line */
 .timeline::before{
   content: "";
   position: absolute;
@@ -215,7 +285,6 @@ body{
   padding: 20px 0;
 }
 
-/* marker */
 .t-marker{
   grid-column: 2;
   justify-self: center;
@@ -228,7 +297,6 @@ body{
   box-shadow: 0 0 0 4px rgba(43,121,255,.06);
 }
 
-/* card */
 .t-card{
   padding: 0;
   border-bottom: 1px solid var(--line);
@@ -242,19 +310,16 @@ body{
   gap: 14px;
 }
 
-/* odd = left */
 .t-item:nth-child(odd) .t-card{
   grid-column: 1;
   text-align: right;
 }
 
-/* even = right */
 .t-item:nth-child(even) .t-card{
   grid-column: 3;
   text-align: left;
 }
 
-/* Mobile: single column (line on the left) */
 @media (max-width: 720px){
   .navigation{ gap: 14px; font-size: 12px; }
 
@@ -277,5 +342,10 @@ body{
   .t-card{
     grid-column: 2;
     text-align: left !important;
+  }
+
+  .skill-block > summary{
+    padding: 15px 14px;
+    font-size: 13px;
   }
 }
