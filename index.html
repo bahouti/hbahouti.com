@@ -16,16 +16,42 @@
 </head>
 
 <body>
+  <!-- LOADER (on refresh) -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-bits" aria-hidden="true"></div>
+    <div class="loader-center">
+      <div class="loader-mark">HB</div>
+      <div class="loader-text">Loading…</div>
+    </div>
+  </div>
+
   <div id="bg"></div>
 
   <header class="nav">
     <a class="brand" href="#">HB</a>
+
     <nav class="navigation">
       <a href="#about">ABOUT</a>
       <a href="#experience">EXPERIENCE</a>
       <a href="#work">WORK</a>
       <a href="#contact">CONTACT</a>
     </nav>
+
+    <!-- ICON BAR (LinkedIn + languages) -->
+    <div class="iconbar" aria-label="Quick links">
+      <a class="iconbtn" href="https://linkedin.com/in/hicham-bahouti" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5ZM.5 23.5h4V7.5h-4v16ZM8.5 7.5h3.83v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.77 2.65 4.77 6.1v9.9h-4v-8.78c0-2.09-.04-4.78-2.91-4.78-2.91 0-3.36 2.28-3.36 4.63v8.93h-4v-16Z"/>
+        </svg>
+      </a>
+
+      <button class="iconbtn" type="button" data-lang="fr" aria-label="Français">
+        <span class="flag">🇫🇷</span>
+      </button>
+      <button class="iconbtn" type="button" data-lang="en" aria-label="English">
+        <span class="flag">🇬🇧</span>
+      </button>
+    </div>
   </header>
 
   <main class="main">
@@ -38,7 +64,7 @@
     <section id="about">
       <div class="intro reveal">
         <p>
-           A l’origine de formation électronique, j’ai décidé de me réorienter via l’alternance. Le monde de l’informatique a toujours été une grande passion car il me permet d’assouvir ma curiosité et mon envie d’apprendre. J’ai réalisé des missions liées à la sécurité informatique pendant 2 ans. J’ai 4 années d’expérience au poste d’administrateur systèmes et réseaux. L’administration, la sécurisation du système d’information, l’analyse de logs, la gestion des incidents de sécurité et la proposition de nouveaux systèmes font partie de mes compétences principales. Passionné et en accord avec ma dernière formation spécialisée dans la sécurité informatique, je suis aujourd’hui à la recherche d’un emploi dans la cybersécurité. Je serai disponible à partir Juillet 2021. Si mon profil vous intéresse, n’hésitez pas à me contacter. Je vous souhaite une bonne et agréable visite. 
+           A l’origine de formation électronique, j’ai décidé de me réorienter via l’alternance. Le monde de l’informatique a toujours été une grande passion car il me permet d’assouvir ma curiosité et mon envie d’apprendre. J’ai réalisé des missions liées à la sécurité informatique pendant 2 ans. J’ai 4 années d’expérience au poste d’administrateur systèmes et réseaux. L’administration, la sécurisation du système d’information, l’analyse de logs, la gestion des incidents de sécurité et la proposition de nouveaux systèmes font partie de mes compétences principales. Passionné et en accord avec ma dernière formation spécialisée dans la sécurité informatique, je suis aujourd’hui à la recherche d’un emploi dans la cybersécurité. Je serai disponible à partir Juillet 2021. Si mon profil vous intéresse, n’hésitez pas à me contacter. Je vous souhaite une bonne et agréable visite.
         </p>
         <p>
           I build labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and convert incidents into runbooks
@@ -141,5 +167,66 @@
 
   <script src="main.js" defer></script>
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+
+  <!-- Loader + lang switch -->
+  <script>
+    (() => {
+      const loader = document.getElementById("loader");
+      if (!loader) return;
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const host = loader.querySelector(".loader-bits");
+
+      const makeBits = () => {
+        if (!host || reduced) return;
+        host.innerHTML = "";
+
+        const patterns = ["0101010101", "1101010110", "01010101", "11010110"];
+        const count = 14;
+
+        for (let i = 0; i < count; i++) {
+          const el = document.createElement("div");
+          el.className = "loader-bit";
+          el.textContent = patterns[Math.floor(Math.random() * patterns.length)];
+
+          el.style.left = Math.floor(Math.random() * 92) + "%";
+          el.style.top = Math.floor(Math.random() * 92) + "%";
+          el.style.animationDelay = (Math.random() * 0.6).toFixed(2) + "s";
+          el.style.animationDuration = (0.9 + Math.random() * 0.7).toFixed(2) + "s";
+
+          host.appendChild(el);
+        }
+      };
+
+      const hideFast = () => {
+        const minShow = 550;
+        const start = performance.now();
+
+        const done = () => {
+          const elapsed = performance.now() - start;
+          const wait = Math.max(0, minShow - elapsed);
+
+          setTimeout(() => {
+            loader.classList.add("is-hidden");
+            setTimeout(() => loader.remove(), 350);
+          }, wait);
+        };
+
+        if (document.readyState === "complete") done();
+        else window.addEventListener("load", done, { once: true });
+      };
+
+      makeBits();
+      hideFast();
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-lang]");
+        if (!btn) return;
+        const lang = btn.getAttribute("data-lang");
+        if (lang === "fr") window.location.href = "/";
+        if (lang === "en") window.location.href = "/en/";
+      });
+    })();
+  </script>
 </body>
 </html>
