@@ -66,7 +66,6 @@
   resize();
   step();
 
-  // pause animation when tab not visible
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       cancelAnimationFrame(raf);
@@ -119,4 +118,45 @@
   );
 
   els.forEach((el) => obs.observe(el));
+})();
+
+
+// Skills accordion (smooth + 1 open)
+(() => {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const blocks = document.querySelectorAll(".skill-block");
+  if (!blocks.length) return;
+
+  const setHeight = (d) => {
+    const content = d.querySelector(".skill-content");
+    if (!content) return;
+    content.style.maxHeight = d.open ? content.scrollHeight + "px" : "0px";
+  };
+
+  blocks.forEach((d) => {
+    const content = d.querySelector(".skill-content");
+    if (!content) return;
+
+    setHeight(d);
+
+    d.addEventListener("toggle", () => {
+      if (d.open) {
+        blocks.forEach((other) => {
+          if (other !== d) {
+            other.open = false;
+            setHeight(other);
+          }
+        });
+      }
+      requestAnimationFrame(() => setHeight(d));
+    });
+  });
+
+  window.addEventListener(
+    "resize",
+    () => blocks.forEach(setHeight),
+    { passive: true }
+  );
 })();
