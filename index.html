@@ -1,18 +1,18 @@
 <!-- index.html -->
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <title>Home | Hicham Bahouti</title>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Hicham Bahouti</title>
   <meta name="description" content="Hicham Bahouti — Administrateur réseaux & systèmes" />
 
   <link rel="stylesheet" href="style.css" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -20,10 +20,9 @@
 
   <header class="nav">
     <a class="brand" href="#">HB</a>
-    <nav class="navigation">
+    <nav class="navigation" aria-label="Navigation principale">
       <a href="#about">ABOUT</a>
       <a href="#experience">EXPERIENCE</a>
-      <a href="#work">WORK</a>
       <a href="#contact">CONTACT</a>
     </nav>
   </header>
@@ -38,12 +37,10 @@
     <section id="about">
       <div class="intro reveal">
         <p>
-          Hello. I work on Windows infrastructure and security: Active Directory, DNS/DHCP, PKI templates, Exchange,
-          monitoring, and clean documentation — with a pragmatic, reliability-first approach.
+          À l'origine de formation électrotechnique, j'ai décidé de me réorienter vers l'informatique via l'alternance afin d'aligner mon parcours avec ma réelle passion. Le monde de l'informatique a toujours été une évidence pour moi car il me permet d'assouvir ma curiosité et mon envie constante d'apprendre.
         </p>
         <p>
-          I build labs to reproduce enterprise stacks (AD DS, PKI, GPO, monitoring) and convert incidents into runbooks
-          and small automation wins.
+          J'ai évolué dans des environnements à forte exigence en matière de sécurité et de fiabilité des systèmes d'information. Je dispose aujourd'hui de 4 années d'expérience en tant qu'administrateur systèmes et réseaux. L'administration et la sécurisation des infrastructures, l'analyse de logs, la gestion d'incidents techniques (N2/N3) ainsi que la mise en place et l'amélioration de nouveaux systèmes font partie de mes compétences principales.
         </p>
       </div>
     </section>
@@ -55,14 +52,12 @@
         <div class="t-card">
           <div class="t-top">
             <h1 class="post-title">
-              Systems & Network Administrator —
-              <a class="company-link" href="https://www.primx.eu/" target="_blank" rel="noreferrer">Prim’X</a>
+              Administrateur Systèmes & Réseaux —
+              <a class="company-link" href="https://www.primx.eu/" target="_blank" rel="noreferrer">Prim'X</a>
             </h1>
-            <div class="date">Depuis Sep 2025</div>
+            <div class="date">Depuis Septembre 2025</div>
           </div>
-          <div class="summary">
-            
-          </div>
+          <div class="summary"></div>
         </div>
       </article>
 
@@ -71,14 +66,12 @@
         <div class="t-card">
           <div class="t-top">
             <h1 class="post-title">
-              Systems & Network Administrator —
+              Administrateur Systèmes & Réseaux —
               <a class="company-link" href="https://www.labanquepostale.fr/" target="_blank" rel="noreferrer">La Banque Postale</a>
             </h1>
-            <div class="date">Aug 2024 — Jul 2025</div>
+            <div class="date">Août 2024 — Juillet 2025</div>
           </div>
-          <div class="summary">
-            
-          </div>
+          <div class="summary"></div>
         </div>
       </article>
 
@@ -87,15 +80,13 @@
         <div class="t-card">
           <div class="t-top">
             <h1 class="post-title">
-              Systems & Network Administrator —
+              Administrateur Systèmes & Réseaux —
               <a class="company-link" href="https://hopla.cloud/" target="_blank" rel="noreferrer">Hopla.cloud (Filiale de XEFI)</a>
-              <span class="muted"> (Apprenticeship)</span>
+              <span class="muted"> (Alternance)</span>
             </h1>
-            <div class="date">Sep 2022 — Jul 2024</div>
+            <div class="date">Septembre 2022 — Juillet 2024</div>
           </div>
-          <div class="summary">
-            
-          </div>
+          <div class="summary"></div>
         </div>
       </article>
 
@@ -104,49 +95,14 @@
         <div class="t-card">
           <div class="t-top">
             <h1 class="post-title">
-              Field IT Technician —
+              Technicien Informatique Itinérant —
               <a class="company-link" href="https://www.pharmagest.com/" target="_blank" rel="noreferrer">Pharmagest</a>
             </h1>
-            <div class="date">Jul 2022 — Aug 2022</div>
+            <div class="date">Juillet 2022 — Août 2022</div>
           </div>
-          <div class="summary">
-            
-          </div>
+          <div class="summary"></div>
         </div>
       </article>
-    </div>
-
-    <h1 id="work" class="title">Selected work</h1>
-    <div class="list-page">
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Proxmox enterprise lab</h1>
-          <div class="date">Ongoing</div>
-        </div>
-        <div class="summary">
-          Multi-VM Windows Server + clients, AD DS, DNS/DHCP, PKI, Exchange, monitoring.
-        </div>
-      </section>
-
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">PKI templates</h1>
-          <div class="date">Ongoing</div>
-        </div>
-        <div class="summary">
-          Custom templates for signature/encryption scenarios with controlled issuance and lifecycle hygiene.
-        </div>
-      </section>
-
-      <section class="item reveal">
-        <div class="row">
-          <h1 class="post-title">Observability & runbooks</h1>
-          <div class="date">Ongoing</div>
-        </div>
-        <div class="summary">
-          Zabbix checks, troubleshooting, and operational documentation built from real incidents & tickets.
-        </div>
-      </section>
     </div>
 
     <h1 id="contact" class="title">Contact</h1>
