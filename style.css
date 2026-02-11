@@ -11,15 +11,15 @@
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
 
-/* +++ police un peu plus grande (global) +++ */
-html{ font-size: 17px; }
+/* +++ PLUS GRAND (propre) +++ */
+html{ font-size: 18px; }
 
 body{
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--mono);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 #bg{
@@ -45,13 +45,14 @@ body{
   color: var(--text);
   font-weight: 700;
   letter-spacing: .06em;
+  font-size: 14px;
 }
 
 .navigation{
   pointer-events: auto;
   display: flex;
   gap: 22px;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: .12em;
 }
 
@@ -61,9 +62,9 @@ body{
 }
 
 .main{
-  max-width: 880px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 90px 18px 80px;
+  padding: 96px 18px 84px;
 }
 
 .profile{
@@ -72,35 +73,35 @@ body{
 }
 
 .avatar{
-  width: 82px;
-  height: 82px;
+  width: 88px;
+  height: 88px;
   border-radius: 999px;
   object-fit: cover;
 }
 
 .name{
   margin: 14px 0 6px;
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: .08em;
 }
 
 .role{
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .intro{
-  max-width: 680px;
-  margin: 28px auto 0;
-  font-size: 13px;
-  line-height: 1.65;
+  max-width: 720px;
+  margin: 30px auto 0;
+  font-size: 15px;
+  line-height: 1.8;
   color: #222;
 }
 
 .title{
-  font-size: 15px;
-  margin: 40px 0 18px;
+  font-size: 16px;
+  margin: 46px 0 18px;
   letter-spacing: .08em;
 }
 
@@ -109,7 +110,7 @@ body{
 }
 
 .item{
-  padding: 16px 0;
+  padding: 18px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -122,25 +123,25 @@ body{
 
 .post-title{
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .date{
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
 
 .summary{
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 13px;
   color: #222;
-  max-width: 680px;
+  max-width: 720px;
 }
 
 .contact{
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .contact a{
@@ -149,7 +150,7 @@ body{
 }
 
 #footer{
-  padding: 20px 18px 30px;
+  padding: 22px 18px 34px;
   text-align: center;
   color: var(--muted);
   font-size: 12px;
@@ -189,8 +190,8 @@ body{
 
 .timeline{
   position: relative;
-  margin-top: 10px;
-  padding: 8px 0 4px;
+  margin-top: 12px;
+  padding: 10px 0 6px;
 }
 
 /* vertical line */
@@ -211,7 +212,7 @@ body{
   grid-template-columns: 1fr 26px 1fr;
   align-items: start;
   gap: 18px;
-  padding: 18px 0;
+  padding: 20px 0;
 }
 
 /* marker */
@@ -255,7 +256,7 @@ body{
 
 /* Mobile: single column (line on the left) */
 @media (max-width: 720px){
-  .navigation{ gap: 14px; }
+  .navigation{ gap: 14px; font-size: 12px; }
 
   .timeline::before{
     left: 12px;
