@@ -75,28 +75,30 @@ body{
 }
 
 .name{
-  margin: 14px 0 4px;
-  font-size: 18px;
-  letter-spacing: .06em;
+  margin: 14px 0 6px;
+  font-size: 20px;
+  letter-spacing: .08em;
 }
 
 .role{
   margin: 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .intro{
-  max-width: 640px;
-  margin: 26px auto 0;
-  font-size: 12px;
+  max-width: 680px;
+  margin: 28px auto 0;
+  font-size: 13px;
+  line-height: 1.65;
   color: #222;
 }
 
+
 .title{
-  font-size: 14px;
-  margin: 34px 0 14px;
-  letter-spacing: .06em;
+  font-size: 15px;
+  margin: 40px 0 18px;
+  letter-spacing: .08em;
 }
 
 .list-page{
