@@ -10,6 +10,10 @@
 
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
+
+/* +++ police un peu plus grande (global) +++ */
+html{ font-size: 17px; }
+
 body{
   margin: 0;
   background: var(--bg);
@@ -93,7 +97,6 @@ body{
   line-height: 1.65;
   color: #222;
 }
-
 
 .title{
   font-size: 15px;
