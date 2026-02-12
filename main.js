@@ -16,8 +16,8 @@
   let w = 0, h = 0, dpr = 1;
   let raf = 0;
   const dots = [];
-  const COUNT = 140;
-  const SPEED = 0.18;
+  const COUNT = 220;
+  const SPEED = 0.45;
   const COLOR = "43,121,255";
 
   function resize() {
@@ -32,10 +32,10 @@
       dots.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: (Math.random() * 1.4 + 0.4) * dpr,
+        r: (Math.random() * 2 + 0.6) * dpr,
         vx: (Math.random() * 2 - 1) * SPEED * dpr,
         vy: (Math.random() * 2 - 1) * SPEED * dpr,
-        a: Math.random() * 0.35 + 0.08
+        a: Math.random() * 0.55 + 0.25
       });
     }
   }
@@ -67,11 +67,8 @@
   step();
 
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      cancelAnimationFrame(raf);
-    } else {
-      raf = requestAnimationFrame(step);
-    }
+    if (document.hidden) cancelAnimationFrame(raf);
+    else raf = requestAnimationFrame(step);
   });
 })();
 
