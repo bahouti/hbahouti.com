@@ -154,6 +154,67 @@ body{
   text-decoration: none;
 }
 
+.socials{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.social-link{
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.08);
+  border: 1px solid var(--line);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.social-link svg{
+  width: 22px;
+  height: 22px;
+  fill: var(--text);
+  opacity: .92;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.social-link:hover{
+  transform: translateY(-2px);
+  background: rgba(0,0,0,.12);
+  border-color: rgba(0,0,0,.16);
+}
+
+.social-link:hover svg{
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.contact-links{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.contact-text{
+  text-decoration: none;
+  color: var(--muted);
+  transition: color .18s ease;
+}
+
+.contact-text:hover{
+  color: var(--blue);
+}
+
+.sep{
+  color: var(--muted);
+  opacity: .7;
+}
+
 #footer{
   padding: 22px 18px 34px;
   text-align: center;
@@ -171,10 +232,11 @@ body{
 }
 .company-link:focus-visible,
 .contact a:focus-visible,
-.navigation a:focus-visible{
+.navigation a:focus-visible,
+.social-link:focus-visible{
   outline: 2px solid rgba(43,121,255,.35);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 999px;
 }
 
 /* reveal animation */
