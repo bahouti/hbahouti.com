@@ -1,9 +1,8 @@
 // main.js
 
-// Particles background (light) — network style + mouse interaction
+// Background particles (network style)
 (() => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   const bg = document.getElementById("bg");
   if (!bg || reduced) return;
 
@@ -17,37 +16,25 @@
   let raf = 0;
 
   const COLOR = "43,121,255";
-
-  // “Sweet spot” proche du style msuiche
-  const DENSITY = 0.000085;            // densité par pixel (ajuste auto selon taille écran)
-  const SPEED = 0.20;                  // vitesse de dérive
-  const DOT_MIN = 0.55;                // taille min
-  const DOT_MAX = 1.45;                // taille max
-  const DOT_ALPHA_MIN = 0.12;          // opacité min
-  const DOT_ALPHA_MAX = 0.35;          // opacité max
-
-  const LINK_DIST = 135;               // distance de connexion (px CSS)
-  const LINK_ALPHA = 0.14;             // opacité des lignes
-  const MOUSE_RADIUS = 160;            // rayon d’influence souris (px CSS)
-  const MOUSE_FORCE = 0.85;            // force repulsion
-  const FRICTION = 0.985;              // inertie (plus proche de 1 = plus “smooth”)
+  const DENSITY = 0.000085;
+  const SPEED = 0.20;
+  const DOT_MIN = 0.55;
+  const DOT_MAX = 1.45;
+  const DOT_ALPHA_MIN = 0.12;
+  const DOT_ALPHA_MAX = 0.35;
+  const LINK_DIST = 135;
+  const LINK_ALPHA = 0.14;
+  const MOUSE_RADIUS = 160;
+  const MOUSE_FORCE = 0.85;
+  const FRICTION = 0.985;
 
   const dots = [];
   let targetCount = 0;
 
-  const mouse = {
-    x: 0, y: 0,
-    px: 0, py: 0,
-    active: false
-  };
+  const mouse = { x: 0, y: 0, active: false };
 
-  function cssToPx(v) {
-    return v * dpr;
-  }
-
-  function rand(min, max) {
-    return min + Math.random() * (max - min);
-  }
+  const cssToPx = (v) => v * dpr;
+  const rand = (min, max) => min + Math.random() * (max - min);
 
   function setSize() {
     dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -63,13 +50,12 @@
   }
 
   function addDot() {
-    const r = rand(DOT_MIN, DOT_MAX);
     dots.push({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() * 2 - 1) * SPEED * dpr,
       vy: (Math.random() * 2 - 1) * SPEED * dpr,
-      r: r * dpr,
+      r: rand(DOT_MIN, DOT_MAX) * dpr,
       a: rand(DOT_ALPHA_MIN, DOT_ALPHA_MAX),
     });
   }
@@ -90,14 +76,13 @@
 
   function drawLink(p, q, distPx) {
     const maxDist = cssToPx(LINK_DIST);
-    const t = 1 - (distPx / maxDist);
-    const a = t * LINK_ALPHA;
-    if (a <= 0) return;
+    const t = 1 - distPx / maxDist;
+    if (t <= 0) return;
 
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(q.x, q.y);
-    ctx.strokeStyle = `rgba(${COLOR},${a})`;
+    ctx.strokeStyle = `rgba(${COLOR},${t * LINK_ALPHA})`;
     ctx.lineWidth = 1 * dpr;
     ctx.stroke();
   }
@@ -114,11 +99,9 @@
     const mR2 = mR * mR;
 
     for (const p of dots) {
-      // mouvement de base
       p.x += p.vx;
       p.y += p.vy;
 
-      // interaction souris (repulsion douce + inertie)
       if (mouse.active) {
         const dx = p.x - mX;
         const dy = p.y - mY;
@@ -135,13 +118,11 @@
         }
       }
 
-      // friction (évite le “freeze” tout en gardant du vivant)
       p.vx *= FRICTION;
       p.vy *= FRICTION;
 
-      // petite ré-injection de dérive si trop lent
       const v2 = p.vx * p.vx + p.vy * p.vy;
-      const minV = (0.018 * dpr) * (0.018 * dpr);
+      const minV = (0.018 * dpr) ** 2;
       if (v2 < minV) {
         p.vx += (Math.random() * 2 - 1) * 0.03 * dpr;
         p.vy += (Math.random() * 2 - 1) * 0.03 * dpr;
@@ -150,7 +131,6 @@
       wrap(p);
     }
 
-    // liens + dots
     for (let i = 0; i < dots.length; i++) {
       const p = dots[i];
       for (let j = i + 1; j < dots.length; j++) {
@@ -190,7 +170,7 @@
 })();
 
 
-// Smooth scroll for internal anchors
+// Smooth scroll
 (() => {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
@@ -235,7 +215,7 @@
 })();
 
 
-// Skills accordion (smooth + 1 open)
+// Skills accordion
 (() => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
@@ -243,4 +223,30 @@
   const blocks = document.querySelectorAll(".skill-block");
   if (!blocks.length) return;
 
-  const setHeight =
+  const setHeight = (d) => {
+    const content = d.querySelector(".skill-content");
+    if (!content) return;
+    content.style.maxHeight = d.open ? content.scrollHeight + "px" : "0px";
+  };
+
+  blocks.forEach((d) => {
+    const content = d.querySelector(".skill-content");
+    if (!content) return;
+
+    setHeight(d);
+
+    d.addEventListener("toggle", () => {
+      if (d.open) {
+        blocks.forEach((other) => {
+          if (other !== d) {
+            other.open = false;
+            setHeight(other);
+          }
+        });
+      }
+      requestAnimationFrame(() => setHeight(d));
+    });
+  });
+
+  window.addEventListener("resize", () => blocks.forEach(setHeight), { passive: true });
+})();
