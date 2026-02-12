@@ -402,10 +402,22 @@ body{
 }
 
 .t-top{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 190px;
   align-items: baseline;
-  justify-content: space-between;
   gap: 14px;
+}
+
+.t-card .date{
+  text-align: right;
+}
+
+.t-item:nth-child(odd) .t-top{
+  grid-template-columns: 190px 1fr;
+}
+
+.t-item:nth-child(odd) .t-card .date{
+  text-align: left;
 }
 
 .t-item:nth-child(odd) .t-card{
@@ -439,6 +451,19 @@ body{
 
   .t-card{
     grid-column: 2;
+    text-align: left !important;
+  }
+
+  .t-top{
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .t-item:nth-child(odd) .t-top{
+    grid-template-columns: 1fr;
+  }
+
+  .t-card .date{
     text-align: left !important;
   }
 
