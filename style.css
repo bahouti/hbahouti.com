@@ -14,7 +14,7 @@ html{ font-size: 18px; }
 
 body{
   margin: 0;
-  background: #000;
+  background: var(--bg);
   color: var(--text);
   font-family: var(--mono);
   line-height: 1.6;
@@ -70,7 +70,6 @@ body{
   max-width: 920px;
   margin: 0 auto;
   padding: 96px 18px 84px;
-  background: transparent;
 }
 
 .profile{
@@ -102,8 +101,7 @@ body{
   margin: 30px auto 0;
   font-size: 15px;
   line-height: 1.8;
-  color: #ddd;
-  background: transparent;
+  color: #222;
 }
 
 .title{
@@ -143,13 +141,12 @@ body{
 .summary{
   margin-top: 8px;
   font-size: 13px;
-  color: #ddd;
+  color: #222;
   max-width: 720px;
 }
 
 .contact{
   font-size: 13px;
-  background: transparent;
 }
 
 .contact a{
@@ -162,9 +159,9 @@ body{
   text-align: center;
   color: var(--muted);
   font-size: 12px;
-  background: transparent;
 }
 
+/* links (companies + contact) */
 .company-link{
   color: var(--blue);
   text-decoration: none;
@@ -180,6 +177,7 @@ body{
   border-radius: 4px;
 }
 
+/* reveal animation */
 .reveal{
   opacity: 0;
   transform: translateY(12px);
@@ -191,22 +189,22 @@ body{
   transform: translateY(0);
 }
 
-/* Skills */
+/* =========================
+   Skills (Compétences)
+========================= */
 
 .skills{
   max-width: 920px;
   margin: 8px auto 0;
-  background: transparent;
 }
 
 .skill-block{
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(0,0,0,.55);
+  background: #fff;
   margin: 14px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
 }
 
 .skill-block > summary{
@@ -252,13 +250,20 @@ body{
   filter: brightness(1.04);
 }
 
+.skill-block > summary:focus-visible{
+  outline: 3px solid rgba(43,121,255,.35);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* smooth open/close (piloté par JS via max-height) */
 .skill-content{
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height .36s ease, opacity .22s ease;
-  border-top: 1px solid rgba(255,255,255,.06);
-  background: transparent;
+  border-top: 1px solid rgba(0,0,0,.06);
+  background: #fff;
 }
 
 .skill-block[open] .skill-content{
@@ -272,7 +277,7 @@ body{
 .skill-content ul{
   margin: 0;
   padding-left: 18px;
-  color: #ddd;
+  color: #222;
   font-size: 13.5px;
   line-height: 1.65;
 }
@@ -281,13 +286,19 @@ body{
   margin: 4px 0;
 }
 
-/* Timeline */
+@media (prefers-reduced-motion: reduce){
+  .skill-content{ transition: none; }
+  .skill-block > summary::after{ transition: none; }
+}
+
+/* =========================
+   Timeline (Experience)
+========================= */
 
 .timeline{
   position: relative;
   margin-top: 12px;
   padding: 10px 0 6px;
-  background: transparent;
 }
 
 .timeline::before{
@@ -317,15 +328,15 @@ body{
   width: 14px;
   height: 14px;
   border-radius: 999px;
-  background: rgba(43,121,255,.25);
-  border: 1px solid rgba(43,121,255,.45);
+  background: rgba(43,121,255,.18);
+  border: 1px solid rgba(43,121,255,.35);
+  box-shadow: 0 0 0 4px rgba(43,121,255,.06);
 }
 
 .t-card{
   padding: 0;
   border-bottom: 1px solid var(--line);
   padding-bottom: 16px;
-  background: transparent;
 }
 
 .t-top{
@@ -373,4 +384,17 @@ body{
     padding: 15px 14px;
     font-size: 13px;
   }
+}
+
+/* anti “délimitation” avec extensions dark mode */
+.main,
+.intro,
+.timeline,
+.t-card,
+.skills,
+.skill-block,
+.skill-content,
+.contact,
+#footer{
+  background-color: transparent !important;
 }
