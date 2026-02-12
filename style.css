@@ -206,7 +206,7 @@ body{
   user-select: none;
   background: #1f4f86;
   color: #fff;
-  padding: 18px 20px;
+  padding: 18px 54px 18px 20px;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -215,6 +215,9 @@ body{
   justify-content: center;
   position: relative;
   transition: filter .15s ease;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 .skill-block > summary::-webkit-details-marker{ display: none; }
@@ -268,12 +271,12 @@ body{
   margin: 0;
   padding-left: 18px;
   color: #222;
-  font-size: 14px;
-  line-height: 1.75;
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 
 .skill-content li{
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 @media (prefers-reduced-motion: reduce){
