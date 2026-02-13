@@ -51,6 +51,17 @@ body{
   font-weight: 700;
   letter-spacing: .06em;
   font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand .logo{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
 }
 
 .navigation{
@@ -471,6 +482,9 @@ body{
     padding: 15px 14px;
     font-size: 13px;
   }
+
+  .brand{ gap: 8px; }
+  .brand .logo{ width: 28px; height: 28px; }
 }
 
 /* anti “délimitation” avec extensions dark mode */
