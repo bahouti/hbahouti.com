@@ -56,14 +56,21 @@ body{
 .navigation{
   pointer-events: auto;
   display: flex;
-  gap: 22px;
-  font-size: 13px;
-  letter-spacing: .12em;
+  gap: 28px;
+  font-size: 12px;
+  letter-spacing: .28em;
 }
 
 .navigation a{
   text-decoration: none;
   color: var(--blue);
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: .9;
+}
+
+.navigation a:hover{
+  opacity: 1;
 }
 
 .main{
@@ -222,7 +229,6 @@ body{
   font-size: 12px;
 }
 
-/* links (companies + contact) */
 .company-link{
   color: var(--blue);
   text-decoration: none;
@@ -239,7 +245,6 @@ body{
   border-radius: 999px;
 }
 
-/* reveal animation */
 .reveal{
   opacity: 0;
   transform: translateY(12px);
@@ -250,10 +255,6 @@ body{
   opacity: 1;
   transform: translateY(0);
 }
-
-/* =========================
-   Skills (Compétences)
-========================= */
 
 .skills{
   max-width: 920px;
@@ -318,7 +319,6 @@ body{
   border-radius: 12px;
 }
 
-/* smooth open/close (piloté par JS via max-height) */
 .skill-content{
   overflow: hidden;
   max-height: 0;
@@ -352,10 +352,6 @@ body{
   .skill-content{ transition: none; }
   .skill-block > summary::after{ transition: none; }
 }
-
-/* =========================
-   Timeline (Experience)
-========================= */
 
 .timeline{
   position: relative;
@@ -431,7 +427,7 @@ body{
 }
 
 @media (max-width: 720px){
-  .navigation{ gap: 14px; font-size: 12px; }
+  .navigation{ gap: 14px; font-size: 12px; letter-spacing: .22em; }
 
   .timeline::before{
     left: 12px;
@@ -472,7 +468,6 @@ body{
     font-size: 13px;
   }
 }
-
 
 .main,
 .intro,
