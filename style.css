@@ -3,7 +3,7 @@
   --bg: #f8f8f8;
   --text: #111;
   --muted: #666;
-  --blue: #2b79ff;
+  --blue: #78B9FF;
   --line: rgba(0,0,0,.06);
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -234,7 +234,7 @@ body{
 .contact a:focus-visible,
 .navigation a:focus-visible,
 .social-link:focus-visible{
-  outline: 2px solid rgba(43,121,255,.35);
+  outline: 2px solid rgba(120,185,255,.35);
   outline-offset: 3px;
   border-radius: 999px;
 }
@@ -313,7 +313,7 @@ body{
 }
 
 .skill-block > summary:focus-visible{
-  outline: 3px solid rgba(43,121,255,.35);
+  outline: 3px solid rgba(120,185,255,.35);
   outline-offset: 4px;
   border-radius: 12px;
 }
@@ -390,9 +390,9 @@ body{
   width: 14px;
   height: 14px;
   border-radius: 999px;
-  background: rgba(43,121,255,.18);
-  border: 1px solid rgba(43,121,255,.35);
-  box-shadow: 0 0 0 4px rgba(43,121,255,.06);
+  background: rgba(120,185,255,.18);
+  border: 1px solid rgba(120,185,255,.35);
+  box-shadow: 0 0 0 4px rgba(120,185,255,.06);
 }
 
 .t-card{
@@ -473,7 +473,7 @@ body{
   }
 }
 
-/* anti “délimitation” avec extensions dark mode */
+
 .main,
 .intro,
 .timeline,
