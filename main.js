@@ -1,6 +1,5 @@
 // main.js
 
-// Background particles (network style)
 (() => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const bg = document.getElementById("bg");
@@ -15,7 +14,7 @@
   let w = 0, h = 0, dpr = 1;
   let raf = 0;
 
-  const COLOR = "43,121,255";
+  const COLOR = "120,185,255";
   const DENSITY = 0.000085;
   const SPEED = 0.20;
   const DOT_MIN = 0.55;
