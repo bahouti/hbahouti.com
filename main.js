@@ -558,6 +558,19 @@ document.addEventListener("DOMContentLoaded", () => {
   window.dynamicParticleBackground = new DynamicParticleBackground();
 });
 
+(() => {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  const getTheme = () => document.documentElement.getAttribute("data-theme") || "light";
+
+  toggle.addEventListener("click", () => {
+    const next = getTheme() === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+})();
+
 
 // Smooth scroll
 (() => {
