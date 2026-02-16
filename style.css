@@ -7,6 +7,14 @@
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+[data-theme="dark"]{
+  --bg: #0b0f14;
+  --text: #e6edf3;
+  --muted: #9aa4af;
+  --blue: #78B9FF;
+  --line: rgba(255,255,255,.08);
+}
+
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
 html{ font-size: 18px; background: var(--bg); }
@@ -74,6 +82,44 @@ body{
   opacity: 1;
 }
 
+.theme-toggle{
+  pointer-events: auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.08);
+  border: 1px solid var(--line);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.theme-toggle:hover{
+  transform: translateY(-2px);
+  background: rgba(0,0,0,.12);
+  border-color: rgba(0,0,0,.16);
+}
+
+.theme-toggle:focus-visible{
+  outline: 2px solid rgba(120,185,255,.35);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.theme-toggle svg{
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+  opacity: .92;
+}
+
+#icon-sun{ display: none; }
+[data-theme="dark"] #icon-sun{ display: block; }
+[data-theme="dark"] #icon-moon{ display: none; }
+
 .main{
   max-width: 920px;
   margin: 0 auto;
@@ -113,6 +159,8 @@ body{
   line-height: 1.8;
   color: #222;
 }
+
+[data-theme="dark"] .intro{ color: rgba(230,237,243,.92); }
 
 .title{
   font-size: 16px;
@@ -154,6 +202,8 @@ body{
   color: #222;
   max-width: 720px;
 }
+
+[data-theme="dark"] .summary{ color: rgba(230,237,243,.92); }
 
 .contact{
   font-size: 13px;
@@ -275,6 +325,11 @@ body{
   box-shadow: 0 10px 30px rgba(0,0,0,.04);
 }
 
+[data-theme="dark"] .skill-block{
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
 .skill-block > summary{
   list-style: none;
   cursor: pointer;
@@ -333,6 +388,11 @@ body{
   background: #fff;
 }
 
+[data-theme="dark"] .skill-content{
+  background: rgba(255,255,255,.02);
+  border-top-color: rgba(255,255,255,.06);
+}
+
 .skill-block[open] .skill-content{
   opacity: 1;
 }
@@ -348,6 +408,8 @@ body{
   font-size: 13.5px;
   line-height: 1.65;
 }
+
+[data-theme="dark"] .skill-content ul{ color: rgba(230,237,243,.92); }
 
 .skill-content li{
   margin: 4px 0;
