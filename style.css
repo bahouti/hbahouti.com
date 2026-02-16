@@ -92,13 +92,25 @@ body{
   justify-content: center;
   background: rgba(0,0,0,.08);
   border: 1px solid var(--line);
-  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  color: var(--text);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
 }
 
 .theme-toggle:hover{
   transform: translateY(-2px);
   background: rgba(0,0,0,.12);
   border-color: rgba(0,0,0,.16);
+}
+
+[data-theme="dark"] .theme-toggle{
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.14);
+  color: var(--text);
+}
+
+[data-theme="dark"] .theme-toggle:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.22);
 }
 
 .theme-toggle:focus-visible{
