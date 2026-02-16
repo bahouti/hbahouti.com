@@ -23,12 +23,12 @@ class DynamicParticleBackground {
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     this.params = {
-      particleCount: window.innerWidth < 768 ? 1200 : 2600,
-      particleSize: 0.032,
+      particleCount: window.innerWidth < 768 ? 1600 : 3400,
+      particleSize: 0.038,
       particleColor1: null,
       particleColor2: null,
       rotationSpeed: 0.01,
-      bloomStrength: 0.55,
+      bloomStrength: 0.65,
       bloomRadius: 0.4,
       bloomThreshold: 0.3,
       noiseInfluence: 0.28,
@@ -101,7 +101,7 @@ class DynamicParticleBackground {
     container.appendChild(this.renderer.domElement);
     host.appendChild(container);
 
-    this.renderer.domElement.style.opacity = "0.22";
+    this.renderer.domElement.style.opacity = "0.30";
     this.renderer.domElement.style.filter = "blur(0.2px)";
   }
 
