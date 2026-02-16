@@ -27,6 +27,7 @@ body{
   line-height: 1.6;
 }
 
+/* --- Background --- */
 #bg{
   position: fixed;
   inset: 0;
@@ -41,16 +42,33 @@ body{
   display: block;
 }
 
+/* --- NAV (FIX: ne recouvre plus le contenu) --- */
 .nav{
-  position: fixed;
-  top: 18px;
-  left: 18px;
-  right: 18px;
+  position: sticky;          /* au lieu de fixed */
+  top: 0;                    /* au lieu de 18px */
+  left: 0;
+  right: 0;
+  padding: 18px;             /* remplace le gap top/left/right */
   display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
   z-index: 2;
+
+  background: rgba(248,248,248,.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+[data-theme="dark"] .nav{
+  background: rgba(11,15,20,.68);
+  border-bottom: 1px solid var(--line);
+}
+
+/* pour éviter que les ancres arrivent sous la nav */
+section{
+  scroll-margin-top: 96px;
 }
 
 .brand{
