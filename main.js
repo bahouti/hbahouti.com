@@ -1,6 +1,5 @@
 // main.js
 
-
 class DynamicParticleBackground {
   constructor() {
     this.scene = null;
@@ -24,16 +23,16 @@ class DynamicParticleBackground {
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     this.params = {
-      particleCount: window.innerWidth < 768 ? 2000 : 5000,
-      particleSize: 0.04,
-      particleColor1: null, // set in init when THREE is available
+      particleCount: window.innerWidth < 768 ? 1200 : 2600,
+      particleSize: 0.032,
+      particleColor1: null,
       particleColor2: null,
       rotationSpeed: 0.01,
-      bloomStrength: 0.8,
+      bloomStrength: 0.55,
       bloomRadius: 0.4,
       bloomThreshold: 0.3,
-      noiseInfluence: 0.4,
-      chaosLevel: 1.5,
+      noiseInfluence: 0.28,
+      chaosLevel: 1.1,
     };
 
     if (!this.reducedMotion) this.init();
@@ -83,11 +82,9 @@ class DynamicParticleBackground {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.setClearColor(0x000000, 0);
 
-    // IMPORTANT : on utilise TON #bg comme host (comme ton ancien canvas)
     const host = document.getElementById("bg");
     if (!host) throw new Error("#bg not found");
 
-    // on vide #bg et on y met un container identique à l'exemple
     host.innerHTML = "";
 
     const container = document.createElement("div");
@@ -103,6 +100,9 @@ class DynamicParticleBackground {
 
     container.appendChild(this.renderer.domElement);
     host.appendChild(container);
+
+    this.renderer.domElement.style.opacity = "0.22";
+    this.renderer.domElement.style.filter = "blur(0.2px)";
   }
 
   initComposer() {
@@ -264,7 +264,7 @@ class DynamicParticleBackground {
 
     switch (shapeType) {
       case "sphere":
-        targetVertices = this.generateSphereVertices(2.0);
+        targetVertices = this.generateSphereVertices(1.6);
         break;
       case "torus":
         targetVertices = this.generateTorusVertices(1.8, 0.6);
@@ -276,7 +276,7 @@ class DynamicParticleBackground {
         targetVertices = this.generateWaveVertices(2.2);
         break;
       default:
-        targetVertices = this.generateSphereVertices(2.0);
+        targetVertices = this.generateSphereVertices(1.6);
     }
 
     for (let i = 0; i < this.params.particleCount; i++) {
@@ -492,20 +492,20 @@ class DynamicParticleBackground {
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.45;
     `;
 
     const ctx = canvas.getContext("2d");
     const particles = [];
 
-    for (let i = 0; i < 110; i++) {
+    for (let i = 0; i < 90; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
-        alpha: Math.random() * 0.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        size: Math.random() * 1.8 + 0.8,
+        alpha: Math.random() * 0.35 + 0.25,
         hue: Math.random() * 60 + 180,
       });
     }
@@ -549,7 +549,6 @@ class DynamicParticleBackground {
   }
 }
 
-// Init particles on DOM ready (comme l'exemple)
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof THREE === "undefined") return;
 
