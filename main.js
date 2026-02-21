@@ -600,8 +600,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-
-// Smooth scroll
 (() => {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
@@ -618,8 +616,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-
-// Reveal on scroll
 (() => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const els = document.querySelectorAll(".reveal");
@@ -645,8 +641,6 @@ document.addEventListener("DOMContentLoaded", () => {
   els.forEach((el) => obs.observe(el));
 })();
 
-
-// Skills accordion
 (() => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
@@ -680,4 +674,96 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("resize", () => blocks.forEach(setHeight), { passive: true });
+})();
+
+(() => {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+
+  const nav = document.querySelector(".navigation");
+  if (!nav) return;
+
+  const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  let indicator = nav.querySelector(".nav-indicator");
+  if (!indicator) {
+    indicator = document.createElement("div");
+    indicator.className = "nav-indicator";
+    nav.appendChild(indicator);
+  }
+
+  const getSectionForLink = (link) => {
+    const href = link.getAttribute("href");
+    if (!href || href === "#") return null;
+    return document.querySelector(href);
+  };
+
+  const sections = links
+    .map((l) => getSectionForLink(l))
+    .filter(Boolean);
+
+  const setActive = (link) => {
+    links.forEach((l) => l.classList.remove("active"));
+    if (link) link.classList.add("active");
+    moveIndicator();
+  };
+
+  const moveIndicator = () => {
+    const active = nav.querySelector("a.active") || links[0];
+    if (!active) return;
+
+    const navRect = nav.getBoundingClientRect();
+    const r = active.getBoundingClientRect();
+
+    const left = r.left - navRect.left;
+    const width = r.width;
+
+    indicator.style.width = width + "px";
+    indicator.style.transform = `translate3d(${left}px, -50%, 0)`;
+    indicator.style.opacity = "1";
+  };
+
+  const pickInitial = () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const l = links.find((x) => x.getAttribute("href") === hash);
+      if (l) return l;
+    }
+    return links[0];
+  };
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      const id = "#" + visible.target.id;
+      const link = links.find((l) => l.getAttribute("href") === id);
+      if (link) setActive(link);
+    },
+    { threshold: [0.22, 0.35, 0.5, 0.65], rootMargin: "0px 0px -35% 0px" }
+  );
+
+  sections.forEach((s) => obs.observe(s));
+
+  links.forEach((l) => {
+    l.addEventListener("click", () => setActive(l), { passive: true });
+  });
+
+  window.addEventListener("resize", () => {
+    requestAnimationFrame(moveIndicator);
+  }, { passive: true });
+
+  const first = pickInitial();
+  setActive(first);
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(moveIndicator));
+  } else {
+    setTimeout(() => requestAnimationFrame(moveIndicator), 250);
+  }
 })();
