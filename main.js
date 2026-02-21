@@ -21,16 +21,19 @@ class DynamicParticleBackground {
     this.shapeChangeTimer = 0;
 
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.isMobile =
+      window.matchMedia("(max-width: 768px)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
 
     this.params = {
-      particleCount: window.innerWidth < 768 ? 1600 : 3400,
-      particleSize: 0.038,
+      particleCount: this.isMobile ? 1600 : 3400,
+      particleSize: this.isMobile ? 0.032 : 0.038,
       particleColor1: null,
       particleColor2: null,
       rotationSpeed: 0.01,
-      bloomStrength: 0.65,
-      bloomRadius: 0.4,
-      bloomThreshold: 0.3,
+      bloomStrength: this.isMobile ? 0.45 : 0.65,
+      bloomRadius: this.isMobile ? 0.32 : 0.4,
+      bloomThreshold: this.isMobile ? 0.35 : 0.3,
       noiseInfluence: 0.28,
       chaosLevel: 1.1,
     };
@@ -79,7 +82,10 @@ class DynamicParticleBackground {
     });
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    const dprCap = this.isMobile ? 1.5 : 2;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
+
     this.renderer.setClearColor(0x000000, 0);
 
     const host = document.getElementById("bg");
@@ -101,8 +107,8 @@ class DynamicParticleBackground {
     container.appendChild(this.renderer.domElement);
     host.appendChild(container);
 
-    this.renderer.domElement.style.opacity = "0.30";
-    this.renderer.domElement.style.filter = "blur(0.2px)";
+    this.renderer.domElement.style.opacity = this.isMobile ? "0.18" : "0.30";
+    this.renderer.domElement.style.filter = this.isMobile ? "blur(0.1px)" : "blur(0.2px)";
   }
 
   initComposer() {
@@ -175,7 +181,7 @@ class DynamicParticleBackground {
     const material = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        pixelRatio: { value: Math.min(window.devicePixelRatio || 1, 2) },
+        pixelRatio: { value: Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2) },
       },
       vertexShader: `
         attribute float size;
@@ -227,14 +233,37 @@ class DynamicParticleBackground {
       { passive: true }
     );
 
+    document.addEventListener(
+      "touchmove",
+      (e) => {
+        const t = e.touches && e.touches[0];
+        if (!t) return;
+        this.mousePos.x = (t.clientX / window.innerWidth) * 2 - 1;
+        this.mousePos.y = -(t.clientY / window.innerHeight) * 2 + 1;
+      },
+      { passive: true }
+    );
+
     window.addEventListener(
       "resize",
       () => {
         if (!this.camera || !this.renderer) return;
 
+        this.isMobile =
+          window.matchMedia("(max-width: 768px)").matches ||
+          window.matchMedia("(pointer: coarse)").matches;
+
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const dprCap = this.isMobile ? 1.5 : 2;
+        const pr = Math.min(window.devicePixelRatio || 1, dprCap);
+        this.renderer.setPixelRatio(pr);
+
+        if (this.particleSystem && this.particleSystem.material && this.particleSystem.material.uniforms) {
+          this.particleSystem.material.uniforms.pixelRatio.value = pr;
+        }
 
         if (this.composer) this.composer.setSize(window.innerWidth, window.innerHeight);
       },
