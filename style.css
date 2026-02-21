@@ -42,13 +42,13 @@ body{
   display: block;
 }
 
-/* --- NAV (FIX: ne recouvre plus le contenu) --- */
+/* --- NAV --- */
 .nav{
-  position: sticky;          /* au lieu de fixed */
-  top: 0;                    /* au lieu de 18px */
+  position: sticky;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 18px;             /* remplace le gap top/left/right */
+  padding: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,7 +66,6 @@ body{
   border-bottom: 1px solid var(--line);
 }
 
-/* pour éviter que les ancres arrivent sous la nav */
 section{
   scroll-margin-top: 96px;
 }
@@ -529,7 +528,7 @@ section{
 }
 
 @media (max-width: 720px){
-  .navigation{ gap: 14px; font-size: 12px; letter-spacing: .22em; }
+  .navigation{ gap: 12px; font-size: 10px; letter-spacing: .16em; }
 
   .timeline::before{
     left: 12px;
@@ -568,6 +567,135 @@ section{
   .skill-block > summary{
     padding: 15px 14px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 560px){
+  html{ font-size: 16px; }
+
+  .nav{
+    padding: 10px 12px 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  section{
+    scroll-margin-top: 108px;
+  }
+
+  .brand{
+    order: 1;
+    font-size: 12px;
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+
+  .theme-toggle{
+    order: 2;
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+  }
+
+  .navigation{
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 16px;
+    font-size: 10px;
+    letter-spacing: .18em;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .navigation::-webkit-scrollbar{
+    display: none;
+  }
+
+  .main{
+    padding: 104px 14px 70px;
+  }
+
+  .avatar{
+    width: 76px;
+    height: 76px;
+  }
+
+  .name{
+    font-size: 20px;
+  }
+
+  .role{
+    font-size: 13px;
+  }
+
+  .intro{
+    margin-top: 22px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .title{
+    margin: 36px 0 14px;
+    font-size: 15px;
+  }
+
+  .row{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .date{
+    font-size: 11px;
+  }
+
+  .post-title{
+    font-size: 13px;
+  }
+
+  .summary{
+    font-size: 13px;
+  }
+
+  .socials{
+    gap: 12px;
+  }
+
+  .social-link{
+    width: 48px;
+    height: 48px;
+  }
+
+  .social-link svg{
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-links{
+    gap: 8px;
+  }
+
+  .skill-block{
+    border-radius: 12px;
+  }
+
+  .skill-content-inner{
+    padding: 14px 16px 16px;
+  }
+
+  .skill-content ul{
+    font-size: 13px;
+  }
+
+  .timeline{
+    padding: 6px 0 0;
+  }
+
+  .t-item{
+    padding: 16px 0;
   }
 }
 
