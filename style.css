@@ -298,6 +298,7 @@ section{
   background: rgba(0,0,0,.08);
   border: 1px solid var(--line);
   transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  position: relative; /* ✅ tooltip */
 }
 
 .social-link svg{
@@ -317,6 +318,62 @@ section{
 .social-link:hover svg{
   opacity: 1;
   transform: scale(1.03);
+}
+
+/* ✅ Tooltip (discret, moderne) */
+.social-link[data-tooltip]::after{
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  color: var(--text);
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+
+[data-theme="dark"] .social-link[data-tooltip]::after{
+  color: var(--text);
+  background: rgba(11,15,20,.85);
+  border-color: rgba(255,255,255,.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+.social-link[data-tooltip]::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%) translateY(4px) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,.92);
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+
+[data-theme="dark"] .social-link[data-tooltip]::before{
+  background: rgba(11,15,20,.85);
+  border-left-color: rgba(255,255,255,.12);
+  border-top-color: rgba(255,255,255,.12);
+}
+
+.social-link:hover::after,
+.social-link:hover::before{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .contact-links{
