@@ -187,11 +187,18 @@ section{ scroll-margin-top: 96px; }
 
 .profile{ text-align: center; margin-top: 18px; }
 
+/* ✅ AVATAR FIX: ne coupe plus la tête */
 .avatar{
   width: 88px;
   height: 88px;
   border-radius: 999px;
-  object-fit: cover;
+
+  /* avant: cover (ça coupe) */
+  object-fit: contain;        /* ✅ garde toute la photo */
+  object-position: 50% 35%;   /* ✅ remonte légèrement le cadrage */
+  background: transparent;    /* au cas où */
+  display: block;
+  margin: 0 auto;
 }
 
 .name{
@@ -461,6 +468,7 @@ section{ scroll-margin-top: 96px; }
 
   .main{ padding: 104px 14px 70px; }
 
+  /* ✅ AVATAR responsive aussi */
   .avatar{ width: 76px; height: 76px; }
 
   .name{ font-size: 20px; }
