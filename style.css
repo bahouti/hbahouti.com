@@ -28,6 +28,7 @@ body{
 }
 
 /* Background */
+
 #bg{
   position: fixed;
   inset: 0;
@@ -43,6 +44,7 @@ body{
 }
 
 /* Nav */
+
 .nav{
   position: sticky;
   top: 0;
@@ -95,6 +97,7 @@ section{ scroll-margin-top: 96px; }
 .navigation a:hover{ opacity: 1; }
 
 /* Theme button */
+
 .theme-toggle{
   pointer-events: auto;
   width: 38px;
@@ -134,19 +137,18 @@ section{ scroll-margin-top: 96px; }
   margin-top: 18px;
 }
 
-/* ✅ AVATAR PREMIUM + DÉZOOM + ROND */
+/* Avatar */
+
 .avatar{
   width: 110px;
   height: 110px;
-
   border-radius: 50%;
-  overflow: hidden;                /* important pour que le dézoom reste rond */
+  overflow: hidden;
 
   object-fit: cover;
-  object-position: 50% 22%;        /* ajuste le cadrage (remonte un peu) */
+  object-position: 50% 22%;
 
-  padding: 8px;                    /* ✅ DÉZOOM (augmente à 10/12 si tu veux +) */
-  background: transparent;
+  padding: 10px; /* dézoom */
 
   display: block;
   margin: 0 auto;
@@ -154,31 +156,25 @@ section{ scroll-margin-top: 96px; }
   border: 2px solid rgba(120,185,255,.55);
 
   box-shadow:
-    0 0 0 6px rgba(120,185,255,.12),
-    0 14px 34px rgba(0,0,0,.12);
+    0 0 0 4px rgba(120,185,255,.14),
+    0 18px 50px rgba(0,0,0,.25);
 
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .avatar:hover{
   transform: translateY(-2px);
-  border-color: rgba(120,185,255,.85);
-
   box-shadow:
-    0 0 0 8px rgba(120,185,255,.16),
-    0 18px 42px rgba(0,0,0,.16);
+    0 0 0 6px rgba(120,185,255,.18),
+    0 22px 60px rgba(0,0,0,.35);
 }
 
 [data-theme="dark"] .avatar{
-  box-shadow:
-    0 0 0 6px rgba(120,185,255,.14),
-    0 18px 50px rgba(0,0,0,.45);
+  background: rgba(255,255,255,.06);
 }
 
 /* texte profil */
+
 .name{
   margin: 14px 0 6px;
   font-size: 24px;
@@ -191,11 +187,18 @@ section{ scroll-margin-top: 96px; }
   font-size: 14px;
 }
 
+/* intro */
+
 .intro{
   max-width: 720px;
   margin: 30px auto 0;
   font-size: 15px;
   line-height: 1.8;
+  color: #222;
+}
+
+[data-theme="dark"] .intro{
+  color: rgba(230,237,243,.92);
 }
 
 .title{
@@ -225,6 +228,7 @@ section{ scroll-margin-top: 96px; }
 }
 
 /* Timeline */
+
 .timeline{
   position: relative;
   margin-top: 12px;
@@ -291,6 +295,7 @@ section{ scroll-margin-top: 96px; }
 }
 
 /* Skills */
+
 .skills{
   max-width: 920px;
   margin: 8px auto 0;
@@ -324,6 +329,7 @@ section{ scroll-margin-top: 96px; }
 }
 
 /* Contact */
+
 .socials{
   display: flex;
   gap: 16px;
@@ -348,6 +354,7 @@ section{ scroll-margin-top: 96px; }
 }
 
 /* Footer */
+
 #footer{
   padding: 22px 18px 34px;
   text-align: center;
@@ -355,11 +362,22 @@ section{ scroll-margin-top: 96px; }
   font-size: 12px;
 }
 
-/* ✅ Responsive (garde ton rendu mobile clean) */
-@media (max-width: 560px){
+/* Responsive */
+
+@media (max-width:560px){
+
   .avatar{
-    width: 76px;
-    height: 76px;
-    padding: 6px;   /* un peu moins sur mobile */
+    width:76px;
+    height:76px;
+    padding:8px;
   }
+
+  .name{
+    font-size:20px;
+  }
+
+  .role{
+    font-size:13px;
+  }
+
 }
